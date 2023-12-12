@@ -30,5 +30,12 @@ export const logInDoneState = selector({
   },
 });
 
+export const getOrgIdState = selector({
+  key: "getOrgIdState",
+  get: ({ get }) => {
+    return get(userState).orgId;
+  },
+});
+
 
 
