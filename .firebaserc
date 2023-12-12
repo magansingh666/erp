@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "pcs-study"
+  },
+  "targets": {
+    "pcs-study": {
+      "hosting": {
+        "erperp": [
+          "erperp"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

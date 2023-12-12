@@ -1,0 +1,55 @@
+"use client";
+
+import { useEffect } from "react";
+import { UserService, controller2_LoginParams } from "../generated";
+import { useMutation, useQuery } from "react-query";
+
+export default function RosterAssign() {
+  const mutation = useMutation({
+    mutationKey: "key1",
+    mutationFn: (l: controller2_LoginParams) =>
+      UserService.postUserAuthLogin(l),
+    onSuccess: (data) => console.log(data),
+  });
+
+  useEffect(() => {
+    (async function () {
+      console.log("App started");
+    })();
+  }, [mutation]);
+
+  return (
+    <div className="">
+      <h1>Roster Assign</h1>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+Generic Page component
+=======================
+
+
+
+
+"use client";
+
+
+
+export default function Page() {
+ 
+
+  return (
+    <div className="">
+      <h1>super Admin for user</h1>
+    </div>
+  );
+}
