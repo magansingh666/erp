@@ -5,6 +5,7 @@ import { OpenAPI, UserService, controller2_LoginParams } from "../generated";
 import { useMutation, useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import { userState } from "@/util/state";
+import { getFCMToken } from "@/util/firebase";
 
 export default function Login() {
   const [params, setParams] = useState<controller2_LoginParams>({
@@ -27,6 +28,7 @@ export default function Login() {
   useEffect(() => {
     (async function () {
       console.log("Login Component Loaded");
+      getFCMToken()
     })();
   }, [mutation]);
 

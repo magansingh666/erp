@@ -3,18 +3,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type entity_RosterCreateOutput = {
-    LeftAt?: string;
-    cameAt?: string;
+export type entity_FCMTokenOutput = {
     createdAt?: string;
-    endTime?: string;
+    deviceId?: string;
     id?: string;
-    locationId?: string;
-    orgId?: string;
-    shiftId?: string;
-    startTime?: string;
+    token?: string;
     updatedAt?: string;
     userId?: string;
-    workMinutes?: string;
 };
 

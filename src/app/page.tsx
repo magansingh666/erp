@@ -13,12 +13,12 @@ import OrgSelect from "@/components/orgSelect";
 export default function HomePage() {
   
   const isLoginDone = useRecoilValue(logInDoneState);
-  const [, setUser] = useRecoilState(userState); 
+  const [userData, setUser] = useRecoilState(userState); 
 
   useQuery({
     queryKey: "getUserData",
     queryFn: () => UserService.postPUserGet(""),
-    enabled: isLoginDone,
+    enabled: userData.token.length > 10,
     onSuccess: (data) => {
       setUser((s) => ({
         ...s,

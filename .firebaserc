@@ -1,15 +1,5 @@
 {
   "projects": {
-    "default": "pcs-study"
-  },
-  "targets": {
-    "pcs-study": {
-      "hosting": {
-        "erperp": [
-          "erperp"
-        ]
-      }
-    }
-  },
-  "etags": {}
+    "default": "erp-hrm-c1814"
+  }
 }

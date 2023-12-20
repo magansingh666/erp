@@ -5,6 +5,8 @@
 import type { controller2_IdDataInput } from '../models/controller2_IdDataInput';
 import type { controller2_LoginParams } from '../models/controller2_LoginParams';
 import type { controller2_LoginResponse } from '../models/controller2_LoginResponse';
+import type { entity_FCMTokenInput } from '../models/entity_FCMTokenInput';
+import type { entity_FCMTokenOutput } from '../models/entity_FCMTokenOutput';
 import type { entity_UserCreateInput } from '../models/entity_UserCreateInput';
 import type { entity_UserCreateOutput } from '../models/entity_UserCreateOutput';
 
@@ -130,6 +132,32 @@ export class UserService {
                 'Metadata': metadata,
             },
             body: ids,
+            errors: {
+                400: `Bad Request`,
+                404: `Not Found`,
+                500: `Internal Server Error`,
+            },
+        });
+    }
+
+    /**
+     * Save Firebase Cloud Messaging token in Database
+     * @param fbTokenInput firebase token create input
+     * @param metadata Meta data about request
+     * @returns entity_FCMTokenOutput OK
+     * @throws ApiError
+     */
+    public static postPUserSaveFbToken(
+        fbTokenInput: entity_FCMTokenInput,
+        metadata: string,
+    ): CancelablePromise<entity_FCMTokenOutput> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/p/user/save-fb-token',
+            headers: {
+                'Metadata': metadata,
+            },
+            body: fbTokenInput,
             errors: {
                 400: `Bad Request`,
                 404: `Not Found`,

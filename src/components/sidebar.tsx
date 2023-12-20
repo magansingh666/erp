@@ -56,11 +56,11 @@ function OrgUserMenuList(props: { handler: (b: boolean) => void }) {
       <ul className="menu">
         <li
           onClick={() => {
-            router.push("/livetest/");
+            router.push("/orguser/punchInOut");
             props.handler(false);
           }}
         >
-          <a>OrgUserMenu1</a>
+          <a>Punch In Out</a>
         </li>
       </ul>
     </>
@@ -79,6 +79,15 @@ function OrgAdminMenuList(props: { handler: (b: boolean) => void }) {
           }}
         >
           <a>Roster</a>
+        </li>
+
+        <li
+          onClick={() => {
+            router.push("/orgadmin/rosterByUserId");
+            props.handler(false);
+          }}
+        >
+          <a>Roster by UserId</a>
         </li>
 
         <li

@@ -2,7 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { controller2_GetRosterBInput } from '../models/controller2_GetRosterBInput';
 import type { controller2_IdDataInput } from '../models/controller2_IdDataInput';
+import type { controller2_PunchInOutInput } from '../models/controller2_PunchInOutInput';
+import type { controller2_PunchInOutOutput } from '../models/controller2_PunchInOutOutput';
 import type { entity_RosterCreateInput } from '../models/entity_RosterCreateInput';
 import type { entity_RosterCreateOutput } from '../models/entity_RosterCreateOutput';
 
@@ -110,17 +113,13 @@ export class RosterService {
 
     /**
      * Get User Roster between two time points
-     * @param from from time in ISO String format
-     * @param to to time in ISO string format
-     * @param userIdStr User Id string with uuid format
+     * @param getRosterBetweenInput Get Roster Between Input
      * @param metadata meta data about request
      * @returns entity_RosterCreateOutput OK
      * @throws ApiError
      */
     public static postPRosterGetBetween(
-        from: string,
-        to: string,
-        userIdStr: string,
+        getRosterBetweenInput: controller2_GetRosterBInput,
         metadata: string,
     ): CancelablePromise<Array<entity_RosterCreateOutput>> {
         return __request(OpenAPI, {
@@ -129,7 +128,7 @@ export class RosterService {
             headers: {
                 'Metadata': metadata,
             },
-            body: userIdStr,
+            body: getRosterBetweenInput,
             errors: {
                 400: `Bad Request`,
                 404: `Not Found`,
@@ -156,6 +155,32 @@ export class RosterService {
                 'Metadata': metadata,
             },
             body: ids,
+            errors: {
+                400: `Bad Request`,
+                404: `Not Found`,
+                500: `Internal Server Error`,
+            },
+        });
+    }
+
+    /**
+     * punch in out
+     * @param metadata Meta data about request
+     * @param punchInOutInput provide location id and time string
+     * @returns controller2_PunchInOutOutput OK
+     * @throws ApiError
+     */
+    public static postPRosterPunchInOut(
+        metadata: string,
+        punchInOutInput: controller2_PunchInOutInput,
+    ): CancelablePromise<Array<controller2_PunchInOutOutput>> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/p/roster/punch-in-out',
+            headers: {
+                'Metadata': metadata,
+            },
+            body: punchInOutInput,
             errors: {
                 400: `Bad Request`,
                 404: `Not Found`,

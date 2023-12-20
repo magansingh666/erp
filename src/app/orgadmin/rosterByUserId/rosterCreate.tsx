@@ -6,26 +6,24 @@ import {
   RosterService,
   UserService,
   entity_RosterCreateInput,
-  entity_RosterCreateOutput,
 } from "../../../generated";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/util/state";
 
-export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
-  const { data } = props;
+export default function RosterCreate() {
   const userData = useRecoilValue(userState);
   const t = new Date().toISOString();
-  const [isLoading, setIsLoading] = useState(false);
-  const qClient = useQueryClient();
-  const [userId, setUserId] = useState<string>(data?.userId || "");
-  const [locationId, setLocationId] = useState<string>(data?.locationId || "");
-  const [startTime, setStartTime] = useState(data?.startTime || "");
-  const [endTime, setEndTime] = useState(data?.endTime || "");
+  const [userId, setUserId] = useState<string>("");
+  const [locationId, setLocationId] = useState<string>("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  const qClient = useQueryClient()
 
   const { data: userList } = useQuery({
     queryKey: "userList",
-    queryFn: () => UserService.postPUserGetAll("", ""),
+    queryFn: () => UserService.postPUserGetAll(""),
   });
   const { data: locationList } = useQuery({
     queryKey: "locationList",
@@ -34,13 +32,10 @@ export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
 
   const mutation = useMutation({
     mutationKey: "rosterCreate",
-    mutationFn: (r: entity_RosterCreateOutput) =>
-      RosterService.postPRosterUpdate(r, ""),
-    onSuccess: (data) => {
-      console.log("Updated Data Received ==>", data);
-      qClient.invalidateQueries({ queryKey: ["rosterList"] });
-    },
-    onSettled: () => setIsLoading(false),
+    mutationFn: (r: entity_RosterCreateInput) =>
+      RosterService.postPRosterCreate(r, ""),
+    onSuccess: (data) => {console.log("Data Created is ==>", data); qClient.invalidateQueries({queryKey : ["rosterList"]})},
+    onSettled : () => setIsLoading(false)
   });
 
   useEffect(() => {
@@ -51,7 +46,7 @@ export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
 
   return (
     <div className="max-w-xl m-2 p-2">
-      <h1 className="m-4 text-4xl">Edit Employee Roster</h1>
+      <h1 className="m-4 text-4xl">Create New Employee Roster</h1>
 
       <div className="flex flex-col gap-2">
         <p>Select User Id[Selected User Id : {userId}]</p>
@@ -62,7 +57,7 @@ export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
             onChange={(event) => setUserId(event.target.value)}
           >
             <option value={""} key={"zero"}>
-              {"==Select User Name=="}
+              {"==Select User Id=="}
             </option>
             {userList &&
               userList.map((e, i) => (
@@ -81,7 +76,7 @@ export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
             onChange={(event) => setLocationId(event.target.value)}
           >
             <option value={""} key={"zero"}>
-              {"==Select Location Name=="}
+              {"==Select Location Id=="}
             </option>
             {locationList &&
               locationList.map((e, i) => (
@@ -110,13 +105,11 @@ export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
         />
       </div>
 
-      <button
-        disabled={isLoading}
+      <button disabled={isLoading}
         className="btn btn-outline"
         onClick={() => {
           setIsLoading(true);
           mutation.mutate({
-            id : data.id,
             startTime,
             endTime,
             locationId,
@@ -125,7 +118,7 @@ export default function RosterEdit(props: { data: entity_RosterCreateOutput }) {
           });
         }}
       >
-        Update
+        Assign
       </button>
     </div>
   );
