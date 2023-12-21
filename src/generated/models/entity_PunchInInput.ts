@@ -3,9 +3,14 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type controller2_PunchInOutInput = {
+export type entity_PunchInInput = {
+    IPAddress?: string;
+    createdAt?: string;
+    deviceId?: string;
+    geoLocation?: string;
     locationId?: string;
-    timeStr?: string;
+    orgId?: string;
+    state?: string;
     userId?: string;
 };
 

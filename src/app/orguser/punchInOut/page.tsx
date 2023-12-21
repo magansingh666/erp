@@ -1,6 +1,6 @@
 "use client";
 
-import { ApiError, RosterService, controller2_PunchInOutInput } from "@/generated";
+import { ApiError, RosterService, entity_PunchInOutput, entity_PunchInInput } from "@/generated";
 import { userState } from "@/util/state";
 import { useState } from "react";
 import { useMutation } from "react-query";
@@ -18,7 +18,7 @@ export default function Page() {
 
   const mutation = useMutation({   
     mutationKey: ["punchInOutCreate"],
-    mutationFn: (r: controller2_PunchInOutInput) => RosterService.postPRosterPunchInOut("", r)   ,
+    mutationFn: (r: entity_PunchInInput) => RosterService.postPRosterPunchInOut("", r)   ,
     onSuccess: (data) => {
       console.log("Data Created is ==>", data);
       setRes(JSON.stringify(data))
@@ -55,7 +55,7 @@ export default function Page() {
         className="btn btn-outline m-4"
         onClick={() => {
           setIsLoading(true);
-          mutation.mutate({locationId, timeStr, userId : userData.id })
+          mutation.mutate({locationId, createdAt : timeStr, userId : userData.id })
         }}
       >
         Send

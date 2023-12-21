@@ -13,8 +13,6 @@ export type { controller2_IdDataInput } from './models/controller2_IdDataInput';
 export type { controller2_LoginParams } from './models/controller2_LoginParams';
 export type { controller2_LoginResponse } from './models/controller2_LoginResponse';
 export type { controller2_OrgInput } from './models/controller2_OrgInput';
-export type { controller2_PunchInOutInput } from './models/controller2_PunchInOutInput';
-export type { controller2_PunchInOutOutput } from './models/controller2_PunchInOutOutput';
 export type { entity_ApiError } from './models/entity_ApiError';
 export type { entity_BranchCreateInput } from './models/entity_BranchCreateInput';
 export type { entity_BranchCreateOutput } from './models/entity_BranchCreateOutput';
@@ -24,6 +22,8 @@ export type { entity_LocationCreateInput } from './models/entity_LocationCreateI
 export type { entity_LocationCreateOutput } from './models/entity_LocationCreateOutput';
 export type { entity_OrgCreateInput } from './models/entity_OrgCreateInput';
 export type { entity_OrgCreateOutput } from './models/entity_OrgCreateOutput';
+export type { entity_PunchInInput } from './models/entity_PunchInInput';
+export type { entity_PunchInOutput } from './models/entity_PunchInOutput';
 export type { entity_RoleCreateInput } from './models/entity_RoleCreateInput';
 export type { entity_RoleCreateOutput } from './models/entity_RoleCreateOutput';
 export type { entity_RosterCreateInput } from './models/entity_RosterCreateInput';

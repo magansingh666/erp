@@ -53,3 +53,61 @@ export default function Page() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+=========
+
+data  users
+
+
+"14ba0806-bef8-446e-b7b0-d87528263f75"	"admin2@gmail.com"		"ADMIN"
+"1e858336-0769-4f5a-b903-3eecbba87d84"	"user3@gmail.com"		"ORG_USER"
+"3eed9790-83b4-48f9-b4a7-9e8bb7cf03dd"	"admin1@gmail.com"		"ADMIN"
+"46df5de4-9c18-4850-9bb2-9dce3bceaf4a"	"user4@gmail.com"		"ORG_USER"
+"734f6354-6c08-4d96-9385-f3054391d4c0"	"user6@gmail.com"		"ORG_USER"
+"7ec03001-228b-4822-8c34-0d99ddcb1a42"	"orgadmin1@gmail.com"	"ORG_ADMIN"
+"88500400-a446-43b7-aaa6-f279fec62167"	"user5@gmail.com"		"ORG_USER"
+"b450ad74-3e7a-4900-903c-8ad8a25b0ecc"	"orgadmin2@gmail.com"	"ORG_ADMIN"
+"cd227970-a9fc-44fb-9b03-bdd00d6879fe"	"orgadmin3@gmail.com"	"ORG_ADMIN"
+
+
+
+===============
+  USER_Id                                    ORG_ID
+
+"1e858336-0769-4f5a-b903-3eecbba87d84"	"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"
+"cd227970-a9fc-44fb-9b03-bdd00d6879fe"	"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"
+"7ec03001-228b-4822-8c34-0d99ddcb1a42"	"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"
+"b450ad74-3e7a-4900-903c-8ad8a25b0ecc"	"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"
+"b450ad74-3e7a-4900-903c-8ad8a25b0ecc"	"9f55c8af-a735-48c8-829e-02376042646f"
+"734f6354-6c08-4d96-9385-f3054391d4c0"	"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"
+"14ba0806-bef8-446e-b7b0-d87528263f75"	"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"
+
+
+
+==============ORGS ================
+
+"5060df62-20d2-4e11-8115-10ad9f9f9c9a"	"org name 003edit"	"orgemail001@gmail.com"
+"9f55c8af-a735-48c8-829e-02376042646f"	"org2" 			"orgemail2@gmail.com"
+"b09b6c80-f4a0-4a2e-a8ca-a28f43760199"	"org1"			"orgemail1@gmail.com"
+
+
+
+
+
+
+
+
+
+
+
+
+

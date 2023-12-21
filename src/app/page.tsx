@@ -9,11 +9,17 @@ import Login from "@/components/login";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { logInDoneState, userState } from "@/util/state";
 import OrgSelect from "@/components/orgSelect";
+import { getFCMToken, messaging } from "@/util/firebase";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { onMessage } from "firebase/messaging";
 
 export default function HomePage() {
+  const router = useRouter()
   
-  const isLoginDone = useRecoilValue(logInDoneState);
+  
   const [userData, setUser] = useRecoilState(userState); 
+  const [uiView, setUiView] = useState<"login"|"orgselect">("login")
 
   useQuery({
     queryKey: "getUserData",
@@ -27,15 +33,27 @@ export default function HomePage() {
         systemRole: data?.systemRole || "",
         id: data?.id || "",
       }));
+       
+       
+       if(data?.systemRole as string == "ADMIN"){
+        router.push("/dash")
+        return
+        
+       }
+       setUiView("orgselect")
     },
+  
   });
+
+
 
   
 
   return (
     <div className="flex min-h-screen flex-col items-stretch justify-between p-24">
 
-      {!isLoginDone ? <Login /> : <OrgSelect />}
+      {uiView == "login" && <Login /> }
+      {uiView == "orgselect" && <OrgSelect /> }
       
       
       

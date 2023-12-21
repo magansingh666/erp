@@ -15,31 +15,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 let app: FirebaseApp;
-let messaging: Messaging;
+export let messaging: Messaging;
 
 if (typeof window !== "undefined") {
   app = initializeApp(firebaseConfig);
   messaging = getMessaging(app);
 }
 
-const key =   "BFfZRXL870_o_p7fCkJEoT2MvcAoGesV57HBC8-cR4HZr30pVGYnbeiedho3Yzbbzp8iZYd_f5RwWPSUzJb4ato";
+const key =
+  "BFfZRXL870_o_p7fCkJEoT2MvcAoGesV57HBC8-cR4HZr30pVGYnbeiedho3Yzbbzp8iZYd_f5RwWPSUzJb4ato";
 
 export async function getFCMToken() {
-  getToken(messaging, { vapidKey: key })
-    .then((currentToken) => {
-      if (currentToken) {
-        // Send the token to your server and update the UI if necessary
-        console.log(currentToken);
-      } else {
-        // Show permission request UI
-        console.log(
-          "No registration token available. Request permission to generate one."
-        );
-        // ...
-      }
-    })
+  const s = await getToken(messaging, { vapidKey: key })    
     .catch((err) => {
-      console.log("An error occurred while retrieving token. ", err);
-      // ...
+      console.log(err);
     });
+
+  return s;
 }
+
+
+
