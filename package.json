@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3011",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "k": "kill-port 3000",
-    "g": "openapi --input https://stg-itouch-hrms.nti.hk:1243/gqw3467sdfbnm/swagger/doc.json --output ./src/generated"
+    "k": "kill-port 3011",
+    "g": "openapi --input https://stg-itouch-hrms.nti.hk:1243/gqw3467sdfbnm/swagger/doc.json --output ./src/generated",
+    "gl": "openapi --input http://localhost:3000/gqw3467sdfbnm/swagger/doc.json --output ./src/generated"
   },
   "dependencies": {
     "firebase": "^10.7.1",
@@ -18,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-query": "^3.39.3",
+    "react-uuid": "^2.0.0",
     "recoil": "^0.7.7"
   },
   "devDependencies": {

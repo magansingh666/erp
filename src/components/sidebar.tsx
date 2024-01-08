@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, Xmark } from "iconoir-react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { userState } from "@/util/state";
+import FirebaseHandler from "./firebaseHandler";
 
 function LogoutButton() {
   const router = useRouter();
@@ -62,6 +63,15 @@ function OrgUserMenuList(props: { handler: (b: boolean) => void }) {
         >
           <a>Punch In Out</a>
         </li>
+
+        <li
+          onClick={() => {
+            router.push("/orguser/leave");
+            props.handler(false);
+          }}
+        >
+          <a>Leave</a>
+        </li>
       </ul>
     </>
   );
@@ -97,6 +107,42 @@ function OrgAdminMenuList(props: { handler: (b: boolean) => void }) {
           }}
         >
           <a>Branch</a>
+        </li>
+
+        <li
+          onClick={() => {
+            router.push("/orgadmin/compensationByUserId");
+            props.handler(false);
+          }}
+        >
+          <a>Payment Calculation</a>
+        </li>
+
+        <li
+          onClick={() => {
+            router.push("/orgadmin/notification");
+            props.handler(false);
+          }}
+        >
+          <a>send me notification</a>
+        </li>
+
+        <li
+          onClick={() => {
+            router.push("/orgadmin/unsettled-punch");
+            props.handler(false);
+          }}
+        >
+          <a>Unsettled Punch In/Out Data</a>
+        </li>
+
+        <li
+          onClick={() => {
+            router.push("/orgadmin/leave");
+            props.handler(false);
+          }}
+        >
+          <a>Leave</a>
         </li>
       </ul>
     </>
@@ -164,6 +210,7 @@ export default function Sidebar() {
           </div>
         )}
       </div>
+      <FirebaseHandler />
     </div>
   );
 }

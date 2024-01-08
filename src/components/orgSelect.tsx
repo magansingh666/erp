@@ -42,8 +42,7 @@ export default function OrgSelect() {
       <p className="text-center text-3xl">Select Organization</p>
       { (
         <select
-          value={selectedOrgId}
-          placeholder="Select Organization"
+          value={selectedOrgId}         
           className="select select-primary max-w-xl  m-2"
           onChange={(event) => {
             event.preventDefault();

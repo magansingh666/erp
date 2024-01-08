@@ -1,6 +1,6 @@
 "use client";
 
-import { ApiError, RosterService, entity_PunchInOutput, entity_PunchInInput } from "@/generated";
+import { ApiError, LeaveService, entity_LeaveInput, entity_LeaveOutput } from "@/generated";
 import { userState } from "@/util/state";
 import { useState } from "react";
 import { useMutation } from "react-query";
@@ -10,7 +10,8 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
   const [locationId, setLocationId] = useState("");
   const [orgId, setOrgId] = useState("");
-  const [timeStr, setTimeStr] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const t = new Date().toISOString();
   const [res, setRes] = useState("");
   const userData = useRecoilValue(userState)
@@ -18,8 +19,8 @@ export default function Page() {
 
 
   const mutation = useMutation({   
-    mutationKey: ["punchInOutCreate"],
-    mutationFn: (r: entity_PunchInInput) => RosterService.postPRosterPunchInOut("", r)   ,
+    mutationKey: ["LeaveCreate"],
+    mutationFn: (r: entity_LeaveInput) => LeaveService.postPLeaveCreate(r, "")   ,
     onSuccess: (data) => {
       console.log("Data Created is ==>", data);
       setRes(JSON.stringify(data))
@@ -33,19 +34,20 @@ export default function Page() {
       <h1>Enter Location Id and Time String. Then click Send button</h1>
 
       <div className="flex flex-col gap-2 max-w-md m-4">
-        <p suppressHydrationWarning>Enter Location Id</p>
+        <p suppressHydrationWarning>Enter Leave Start Time like this: {t}</p>
         <input
           type="text"
-          value={locationId}
-          onChange={(e1) => setLocationId(e1.target.value)}
-          placeholder="Location Id"
-          className="input input-bordered input-primary w-full  m-2"
+          value={startTime}
+          onChange={(e1) => setStartTime(e1.target.value)}
+          placeholder="Time String in Iso Format"
+          className="input input-bordered input-primary w-full m-2"
         />
-        <p suppressHydrationWarning>Time String in formate {t}</p>
+     
+        <p suppressHydrationWarning>Enter Leave End Time like this: {t}</p>
         <input
           type="text"
-          value={timeStr}
-          onChange={(e1) => setTimeStr(e1.target.value)}
+          value={endTime}
+          onChange={(e1) => setEndTime(e1.target.value)}
           placeholder="Time String in Iso Format"
           className="input input-bordered input-primary w-full m-2"
         />
@@ -56,7 +58,7 @@ export default function Page() {
         className="btn btn-outline m-4"
         onClick={() => {
           setIsLoading(true);
-          mutation.mutate({locationId, createdAt : timeStr, userId : userData.id, orgId : userData.orgId })
+          mutation.mutate({startTime, endTime, userId : userData.id, orgId : userData.orgId})
         }}
       >
         Send

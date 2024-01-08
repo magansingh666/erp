@@ -13,7 +13,23 @@ const firebaseConfig = {
   measurementId: "G-BHG86LRYDW",
 };
 
-// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+//export default firebaseApp;
+
+export function getMessageClient() {
+  try {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      const messaging = getMessaging(firebaseApp);
+      console.log("\n firebase messaging client initialized", messaging)
+      return messaging;
+    }
+  } catch (error) {
+    console.log("An error occurred in get Messaging function ....", error);
+  }
+}
+
+/*
+
 let app: FirebaseApp;
 export let messaging: Messaging;
 
@@ -36,3 +52,10 @@ export async function getFCMToken() {
 
 
 
+
+
+
+
+*/
+
+// Initialize Firebase

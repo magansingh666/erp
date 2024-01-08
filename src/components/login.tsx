@@ -9,7 +9,7 @@ import { getFCMToken } from "@/util/firebase";
 
 export default function Login() {
   const [params, setParams] = useState<controller2_LoginParams>({
-    email: "admin1@gmail.com",
+    email: "org1admin1@gmail.com",
     password: "password",
     otp: "",
   });
@@ -28,7 +28,7 @@ export default function Login() {
   useEffect(() => {
     (async function () {
       console.log("Login Component Loaded");
-      getFCMToken()
+      
     })();
   }, [mutation]);
 

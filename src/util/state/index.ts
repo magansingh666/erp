@@ -7,6 +7,7 @@ const initUserState = {
   firstName: "",
   lastName: "",
   systemRole: "",
+  fToken : ""
 };
 
 export const userState = atom({

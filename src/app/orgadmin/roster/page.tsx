@@ -64,6 +64,7 @@ export default function Page() {
     if (!rosterList || !locationList1 || !userList1) {
       return;
     }
+    setArr([])
     for (let r of rosterList) {
       const data: RosterUIData = {
         startTime: r.startTime || "",

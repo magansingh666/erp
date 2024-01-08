@@ -4,6 +4,10 @@
 /* eslint-disable */
 import type { controller2_GetRosterBInput } from '../models/controller2_GetRosterBInput';
 import type { controller2_IdDataInput } from '../models/controller2_IdDataInput';
+import type { controller2_OrgInput } from '../models/controller2_OrgInput';
+import type { controller2_SendMeNotificationInput } from '../models/controller2_SendMeNotificationInput';
+import type { controller2_SendMeNotificationOutput } from '../models/controller2_SendMeNotificationOutput';
+import type { controller2_WorkingTimeOutput } from '../models/controller2_WorkingTimeOutput';
 import type { entity_PunchInInput } from '../models/entity_PunchInInput';
 import type { entity_PunchInOutput } from '../models/entity_PunchInOutput';
 import type { entity_RosterCreateInput } from '../models/entity_RosterCreateInput';
@@ -164,6 +168,58 @@ export class RosterService {
     }
 
     /**
+     * get all unsettled puch in/out data
+     * @param metadata Meta data about request
+     * @param orgIdInput provide org id
+     * @returns entity_PunchInOutput OK
+     * @throws ApiError
+     */
+    public static postPRosterGetUnsettledPuchInOut(
+        metadata: string,
+        orgIdInput: controller2_OrgInput,
+    ): CancelablePromise<Array<entity_PunchInOutput>> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/p/roster/get-unsettled-puch-in-out',
+            headers: {
+                'Metadata': metadata,
+            },
+            body: orgIdInput,
+            errors: {
+                400: `Bad Request`,
+                404: `Not Found`,
+                500: `Internal Server Error`,
+            },
+        });
+    }
+
+    /**
+     * Get Working time of user between two time points
+     * @param dataInput Get Working time between dates
+     * @param metadata meta data about request
+     * @returns controller2_WorkingTimeOutput OK
+     * @throws ApiError
+     */
+    public static postPRosterGetWorkingHour(
+        dataInput: controller2_GetRosterBInput,
+        metadata: string,
+    ): CancelablePromise<controller2_WorkingTimeOutput> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/p/roster/get-working-hour',
+            headers: {
+                'Metadata': metadata,
+            },
+            body: dataInput,
+            errors: {
+                400: `Bad Request`,
+                404: `Not Found`,
+                500: `Internal Server Error`,
+            },
+        });
+    }
+
+    /**
      * punch in out
      * @param metadata Meta data about request
      * @param punchInOutInput provide location id and time string
@@ -181,6 +237,32 @@ export class RosterService {
                 'Metadata': metadata,
             },
             body: punchInOutInput,
+            errors: {
+                400: `Bad Request`,
+                404: `Not Found`,
+                500: `Internal Server Error`,
+            },
+        });
+    }
+
+    /**
+     * send test notification to self
+     * @param metadata Meta data about request
+     * @param notificationInput notification Input
+     * @returns controller2_SendMeNotificationOutput OK
+     * @throws ApiError
+     */
+    public static postPRosterSendMeNotification(
+        metadata: string,
+        notificationInput: controller2_SendMeNotificationInput,
+    ): CancelablePromise<controller2_SendMeNotificationOutput> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/p/roster/send-me-notification',
+            headers: {
+                'Metadata': metadata,
+            },
+            body: notificationInput,
             errors: {
                 400: `Bad Request`,
                 404: `Not Found`,
