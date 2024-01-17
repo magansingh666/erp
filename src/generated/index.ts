@@ -23,6 +23,7 @@ export type { entity_FCMTokenInput } from './models/entity_FCMTokenInput';
 export type { entity_FCMTokenOutput } from './models/entity_FCMTokenOutput';
 export type { entity_LeaveInput } from './models/entity_LeaveInput';
 export type { entity_LeaveOutput } from './models/entity_LeaveOutput';
+export type { entity_LeaveOutputWithFBSendIds } from './models/entity_LeaveOutputWithFBSendIds';
 export type { entity_LocationCreateInput } from './models/entity_LocationCreateInput';
 export type { entity_LocationCreateOutput } from './models/entity_LocationCreateOutput';
 export type { entity_OrgCreateInput } from './models/entity_OrgCreateInput';

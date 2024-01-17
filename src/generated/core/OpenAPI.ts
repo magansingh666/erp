@@ -20,7 +20,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-    BASE: 'https://stg-itouch-hrms.nti.hk:1243/api/v2',
+    BASE: 'http://localhost:3000/api/v2',
     VERSION: '2.0',
     WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',

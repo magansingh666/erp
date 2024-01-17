@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { entity_LeaveInput } from '../models/entity_LeaveInput';
 import type { entity_LeaveOutput } from '../models/entity_LeaveOutput';
+import type { entity_LeaveOutputWithFBSendIds } from '../models/entity_LeaveOutputWithFBSendIds';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -15,13 +16,13 @@ export class LeaveService {
      * Create a new Leave in Database
      * @param leaveInput leave create input
      * @param metaData meta data about request
-     * @returns entity_LeaveOutput OK
+     * @returns entity_LeaveOutputWithFBSendIds OK
      * @throws ApiError
      */
     public static postPLeaveCreate(
         leaveInput: entity_LeaveInput,
         metaData?: string,
-    ): CancelablePromise<entity_LeaveOutput> {
+    ): CancelablePromise<entity_LeaveOutputWithFBSendIds> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/p/leave/create',
